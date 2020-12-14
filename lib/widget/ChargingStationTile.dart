@@ -1,4 +1,6 @@
 import 'package:electro/models/NearByPlaces.dart';
+import 'package:electro/models/PlaceDistance.dart';
+import 'package:electro/services/NearByPlacesService.dart';
 import 'package:flutter/material.dart';
 
 class ChargingStationTile extends StatelessWidget {
@@ -84,8 +86,53 @@ class ChargingStationTile extends StatelessWidget {
     );
   }
 
-  findDistanceToPlace(String latitude, String longitude) {
-    // TODO: implement distance widget
-    return Text("2 min away");
+  Widget findDistanceToPlace(String lat, String lng) {
+    String _distance;
+    String _duration;
+    return FutureBuilder<List<Rows>>(
+      future: NearByPlacesService.getDistanceToPlace(lat, lng),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.waiting:
+          case ConnectionState.active:
+            return CircularProgressIndicator();
+          case ConnectionState.done:
+            if (snapshot.hasData) {
+              List<Rows> data = snapshot.data;
+              data.forEach((elms) {
+                elms.elements.forEach((elm) {
+                  _distance = elm.distance.text;
+                  _duration = elm.duration.text;
+                });
+              });
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    _distance,
+                    style: TextStyle(
+                        color: Colors.amberAccent,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  ),
+                  Text(
+                    _duration,
+                    style: TextStyle(
+                      color: Colors.amber,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  )
+                ],
+              );
+            }
+            return CircularProgressIndicator();
+          default:
+            return CircularProgressIndicator();
+        }
+      },
+    );
   }
 }

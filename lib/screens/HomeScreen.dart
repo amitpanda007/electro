@@ -14,13 +14,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     activeStream = _isSelected ? manager.placesListViewMax : manager.placesListView;
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: SafeArea(
-        child: ListView(
+      body: Container(
+        height: size.height,
+        child: Column(
           children: <Widget>[
             SwitchListTile(
               title: Text("Expand Search (Max 5KM)"),
@@ -33,8 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
             ),
-            Container(
-              height: 500,
+            Expanded(
               child: ChargingStationTile(
                 stream: activeStream,
               ),
