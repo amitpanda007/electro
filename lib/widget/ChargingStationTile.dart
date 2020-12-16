@@ -2,6 +2,7 @@ import 'package:electro/models/NearByPlaces.dart';
 import 'package:electro/models/PlaceDistance.dart';
 import 'package:electro/services/NearByPlacesService.dart';
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 class ChargingStationTile extends StatelessWidget {
   final Stream<List<Result>> stream;
@@ -78,8 +79,7 @@ class ChargingStationTile extends StatelessWidget {
                     ),
                     trailing: findDistanceToPlace(latitude, longitude),
                     onTap: () {
-                      /*_launchMapsUrl("ChIJw-P4V5unGToRE9YxF4ShiWY",
-                                "ChIJ41yEqJynGToRCcibrlr4XnE");*/
+                      _launchMap(double.parse(latitude), double.parse(longitude));
                     },
                     enabled: place.openingHours.openNow == false ? false : true,
                   ),
@@ -141,5 +141,11 @@ class ChargingStationTile extends StatelessWidget {
         }
       },
     );
+  }
+
+  void _launchMap(double lat, double lng) {
+    // MapsLauncher.launchCoordinates(lat, lng);
+    print("Navigating to Lat:${lat}, Lng:${lng}");
+    MapsLauncher.launchCoordinates(lat, lng);
   }
 }
