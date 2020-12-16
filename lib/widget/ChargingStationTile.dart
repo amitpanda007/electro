@@ -48,14 +48,16 @@ class ChargingStationTile extends StatelessWidget {
                 String latitude = place.geometry.location.lat.toString();
                 String longitude = place.geometry.location.lng.toString();
                 return Card(
+                  margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
                   child: ListTile(
-                    tileColor: Colors.blueGrey,
+                    tileColor: Colors.blueGrey.shade800,
                     contentPadding: EdgeInsets.all(15.0),
                     dense: true,
                     isThreeLine: true,
                     leading: Icon(
                       Icons.local_gas_station,
                       size: 50.0,
+                      color: Colors.pinkAccent.withOpacity(0.8),
                     ),
                     title: Text(
                       place.name,
@@ -63,10 +65,14 @@ class ChargingStationTile extends StatelessWidget {
                     ),
                     subtitle: Row(
                       children: <Widget>[
-                        Icon(Icons.star_half),
+                        Icon(
+                          Icons.star_half,
+                          size: 30.0,
+                          color: Colors.amber,
+                        ),
                         Text(
                           place.rating.toString(),
-                          style: TextStyle(fontSize: 18.0),
+                          style: TextStyle(fontSize: 20.0),
                         ),
                       ],
                     ),
@@ -75,6 +81,7 @@ class ChargingStationTile extends StatelessWidget {
                       /*_launchMapsUrl("ChIJw-P4V5unGToRE9YxF4ShiWY",
                                 "ChIJ41yEqJynGToRCcibrlr4XnE");*/
                     },
+                    enabled: place.openingHours.openNow == false ? false : true,
                   ),
                 );
               },
