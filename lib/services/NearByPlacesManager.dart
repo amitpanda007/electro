@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:electro/models/NearByPlaces.dart';
 import 'package:electro/services/NearByPlacesService.dart';
+import 'package:electro/services/PreferenceManager.dart';
 
 class NearByPlacesManager {
 

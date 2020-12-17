@@ -51,29 +51,29 @@ class ChargingStationTile extends StatelessWidget {
                 return Card(
                   margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
                   child: ListTile(
-                    tileColor: Colors.blueGrey.shade800,
+                    tileColor: Theme.of(context).cardColor,
                     contentPadding: EdgeInsets.all(15.0),
                     dense: true,
                     isThreeLine: true,
                     leading: Icon(
                       Icons.local_gas_station,
                       size: 50.0,
-                      color: Colors.pinkAccent.withOpacity(0.8),
+                      color: Theme.of(context).primaryColorLight,
                     ),
                     title: Text(
                       place.name,
-                      style: TextStyle(fontSize: 20.0),
+                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                     subtitle: Row(
                       children: <Widget>[
                         Icon(
                           Icons.star_half,
                           size: 30.0,
-                          color: Colors.amber,
+                          color: Theme.of(context).primaryColorDark,
                         ),
                         Text(
                           place.rating.toString(),
-                          style: TextStyle(fontSize: 20.0),
+                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600,),
                         ),
                       ],
                     ),
@@ -120,14 +120,14 @@ class ChargingStationTile extends StatelessWidget {
                   Text(
                     _distance,
                     style: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Theme.of(context).primaryColorDark,
                         fontWeight: FontWeight.w600,
                         fontSize: 16),
                   ),
                   Text(
                     _duration,
                     style: TextStyle(
-                      color: Colors.amber,
+                      color: Theme.of(context).primaryColorDark,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),

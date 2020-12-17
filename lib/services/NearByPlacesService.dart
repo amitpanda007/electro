@@ -35,7 +35,7 @@ class NearByPlacesService {
   static Future<List<Rows>> getDistanceToPlace(String lat, String lng) async {
     var rng = new Random();
     int index = rng.nextInt(3);
-    await Future.delayed(Duration(seconds: 1));
+    // await Future.delayed(Duration(seconds: 1));
     PlaceDistance _response;
     Response response = await get(_aws_base + _aws_distance[index]).timeout(Duration(seconds: 5));
     if (response.statusCode == 200) {
