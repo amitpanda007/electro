@@ -27,15 +27,39 @@ class _HomeScreenState extends State<HomeScreen> {
         height: size.height,
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 10.0,
+            ),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  text: 'Nearby ',
+                  style: Theme.of(context).textTheme.headline2,
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Charging',
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' Stations',
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Expanded(
               child: StreamBuilder<PreferenceState>(
                 stream: widget.preferenceManager.currentPrefs,
                 builder: (context, snapshot) {
-                  if(snapshot.data?.isLargeSearch == true) {
+                  if (snapshot.data?.isLargeSearch == true) {
                     return ChargingStationTile(
                       stream: manager.placesListViewMax,
                     );
-                  }else {
+                  } else {
                     return ChargingStationTile(
                       stream: manager.placesListView,
                     );

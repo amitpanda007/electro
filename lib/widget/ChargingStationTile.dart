@@ -58,28 +58,31 @@ class ChargingStationTile extends StatelessWidget {
                     leading: Icon(
                       Icons.local_gas_station,
                       size: 50.0,
-                      color: Theme.of(context).primaryColorLight,
                     ),
                     title: Text(
                       place.name,
-                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     subtitle: Row(
                       children: <Widget>[
                         Icon(
                           Icons.star_half,
                           size: 30.0,
-                          color: Theme.of(context).primaryColorDark,
+                          color: Colors.amber,
                         ),
                         Text(
                           place.rating.toString(),
-                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600,),
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                       ],
                     ),
                     trailing: findDistanceToPlace(latitude, longitude),
                     onTap: () {
-                      _launchMap(double.parse(latitude), double.parse(longitude));
+                      _launchMap(
+                          double.parse(latitude), double.parse(longitude));
                     },
                     enabled: place.openingHours.openNow == false ? false : true,
                   ),
@@ -119,18 +122,11 @@ class ChargingStationTile extends StatelessWidget {
                 children: [
                   Text(
                     _distance,
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColorDark,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16),
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
                   Text(
                     _duration,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColorDark,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    style: Theme.of(context).textTheme.subtitle2,
                   )
                 ],
               );
