@@ -13,7 +13,9 @@ class NavigationScreen extends StatelessWidget {
         title: Text("Navigation"),
       ),
       body: Center(
-        child: Text("More info coming soon."),
+        child: Text(
+          "More info coming soon.",
+        ),
       ),
     );
   }

@@ -34,7 +34,7 @@ class PreferenceManager {
   Sink<bool> get isDarkModePref => _isDarkModePref.sink;
 
   void close() {
-    _currentPerfs.cast();
+    _currentPerfs.close();
     _isLargeSearchPref.close();
     _isDarkModePref.close();
   }
